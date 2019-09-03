@@ -10,107 +10,203 @@ require "tty-table"
 
 require "pry"
 
-
-
-loop do 
-    puts '1. Search for a hike'
-    puts '2. Enter a hike'
-
-    action = gets.chomp.to_i
-
-
-    case action 
-    when 1 
+#convert the csv to hash row.to_h
+def load_data_from_csv(filename, data_array)
+    csv_file = CSV.read("#{filename}", headers: true)
     
-        prompt = TTY::Prompt.new
+    csv_file.each do |row|
+        data_array << row.to_h
+    end
 
-        action = prompt.select('What would you like to search by') do |menu|
-            menu.choice 'Hike name', 1
-            menu.choice 'Hike distance', 2
-            menu.choice 'Distance from Melbourne', 3
-            menu.choice 'Wheel chair friendly', 4
-            menu.choice 'Dog friendly', 5
-        end
-        
+    return data_array
+end
 
-        #menu 1, option 1
-        case action
-        when 1
-            arr_headers = []
-            hike_values = []
-            
-            
-          File.open("hiking.csv", 'r').each_with_index do |line, index|
-                if line.length > 0
-                    if index == 0
-                    arr_headers << line
-                    else 
-                        hike_values << line
-                    end 
-                end 
-            end
+####hiking names
+def show_hike_names(hiking_data)
+    # Need to check why name isnt working
+    hiking_data.each_with_index do |hike, index|
+        puts "#{index + 1}- #{hike["Place"]}"
+    end
+end
 
-            
-
-            p arr_headers
-            p hike_values
-    
-
-            
-
-
-
-        end 
-
-        
-        break #to break out of initial menu
-
-
-
-        
-
-        case action 
-        when 2
-        end 
-
-        case action 
-        when 3
-
-        end 
-
-
-        case action
-
-        when 4
-
-        end 
-
-
-
-        case action
-        when 5
-
-        end 
-     
-     
+###distance of hikes
+def show_hike_dist(hiking_data)
+    hiking_data.each_with_index do |hike, index|
+        puts "#{index + 1}- #{hike["Distance"]}"
     end 
-
-
-    
-    
-    
-    case action
-    when 2
-        prompt = TTY::Prompt.new
-        prompt.yes?('Please confirm you would like to enter a hike') do |q|
-            q.suffix 'Y/N'
-        end
-    end 
-
 end 
 
+hiking_data = []
+hiking_data = load_data_from_csv("hiking.csv", hiking_data)
 
-#classes
+show_hike_dist(hiking_data)
+    
+    
+######## user can search by hike name, distance of hike, distance from melb, wheelchair or dog friendly
+# loop do 
+#     puts '1. Search for a hike'
+#     puts '2. Enter a hike'
+
+#     action = gets.chomp.to_i
+
+
+#     case action 
+#         when 1 
+#             prompt = TTY::Prompt.new
+
+#             action = prompt.select('What would you like to list by') do |menu|
+#                 menu.choice 'Hike name', 'name'
+#                 menu.choice 'Hike distance', 'distance'
+#                 menu.choice 'Distance from Melbourne', 'distance_from_melb'
+#                 menu.choice 'Wheelchair friendly', 'wheelchair'
+#                 menu.choice 'Dog friendly', 'dog'
+#             end
+
+#             if action == 'name'
+#                 system 'clear'
+#                 puts "Which hike would you like information on?"
+#                 show_hike_names(hiking_data)
+#                 puts "Select the number of hike"
+#                 input_number = gets.chomp.to_i - 1
+                
+#                 system 'clear'
+#                 selected_hike = hiking_data[input_number]
+#                 puts "Name: #{selected_hike["Place"]}"
+#                 puts "Distance(km): #{selected_hike["Distance"]}"
+#                 puts "Distance from Melbourne(km): #{selected_hike["Distance_From_Melbourne"]}"
+#                 puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
+#                 puts "Dog friendly?: #{selected_hike["Dogs?"]}"
+
+#                 break 
+
+                
+#             end
+
+#             if action == 'distance'
+#                 system 'clear'
+#                 puts "Which hike would you like information on?"
+#                 show_hike_names
+
+                
+#             end 
+            
+
+
+#      end
+# end
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+# loop do 
+#     puts '1. Search for a hike'
+#     puts '2. Enter a hike'
+
+#     action = gets.chomp.to_i
+
+
+#     case action 
+#     when 1 
+    
+#         prompt = TTY::Prompt.new
+
+#         action = prompt.select('What would you like to search by') do |menu|
+#             menu.choice 'Hike name', 1
+#             menu.choice 'Hike distance', 2
+#             menu.choice 'Distance from Melbourne', 3
+#             menu.choice 'Wheel chair friendly', 4
+#             menu.choice 'Dog friendly', 5
+#         end
+        
+
+#         #menu 1, option 1
+#         case action
+#         when 1
+#             arr_headers = []
+#             hike_values = []
+            
+            
+#           File.open("hiking.csv", 'r').each_with_index do |line, index|
+#                 if line.length > 0
+#                     if index == 0
+#                     arr_headers << line
+#                     else 
+#                         hike_values << line
+#                     end 
+#                 end 
+#             end
+
+
+
+#             p arr_headers
+#             p hike_values
+    
+
+            
+
+
+
+#         end 
+
+        
+#         break #to break out of initial menu
+
+
+
+        
+
+#         case action 
+#         when 2
+#         end 
+
+#         case action 
+#         when 3
+
+#         end 
+
+
+#         case action
+
+#         when 4
+
+#         end 
+
+
+
+#         case action
+#         when 5
+
+#         end 
+     
+     
+#     end 
+
+
+    
+    
+    
+#     case action
+#     when 2
+#         prompt = TTY::Prompt.new
+#         prompt.yes?('Please confirm you would like to enter a hike') do |q|
+#             q.suffix 'Y/N'
+#         end
+#     end 
+
+# end 
+
+
+# #classes
 
 # class Hike
 #     def initialize(hike_name, hike_dist, dist_melb, wheelchair, dog_friend)
