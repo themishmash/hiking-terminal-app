@@ -5,7 +5,6 @@ require 'tty-prompt'
 require 'colorize'
 require 'tty-font'
 require 'tty-spinner'
-require 'terminal-table'
 
 require 'CSV'
 require 'pry'
@@ -92,7 +91,7 @@ hiking_data = load_data_from_csv("hiking.csv", hiking_data)
 ######print hike method so DRY. This used to be under each action
 def hike_shown(hiking_data)
     puts "Select the number of hike you'd like more info on"
-    input_number = gets.chomp.to_i - 1
+    input_number = STDIN.gets.chomp.to_i - 1
     selected_hike = hiking_data[input_number]
     
     puts "Name: #{selected_hike["Hike"]}"
@@ -119,17 +118,24 @@ font = TTY::Font.new(:doom)
 puts font.write("Walk It")
 
 
-# if ARGV = show_hike_names(hiking_data)
-#     show_hike_names
-#     exit
-# end
+
+
+########ARGV######## (had to change every gets and put STDIN in front)
+
+name = ""
+def get_name_hike
+    return hike_name = ARGV[0]
+end 
+
+hike_name = get_name_hike
+#puts hike_name
 
 loop do 
     puts '1. Search for a hike'.colorize(:green)
     puts '2. Enter a hike'.colorize(:blue)
     puts '3. Exit'.colorize(:red)
 
-    action = gets.chomp.to_i
+    action = STDIN.gets.chomp.to_i
 
 
     case action 
