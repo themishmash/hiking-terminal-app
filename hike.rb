@@ -29,71 +29,102 @@ def show_hike_names(hiking_data)
     end
 end
 
-###distance of hikes
+###distance of hikes - sort by shortest to longest 
 def show_hike_dist(hiking_data)
+    hiking_data.sort! {|a,b| a['Distance'].to_f <=> b['Distance'].to_f} #block from Jack
     hiking_data.each_with_index do |hike, index|
-        puts "#{index + 1}- #{hike["Distance"]}"
+       puts "#{index + 1}- #{hike["Place"]} #{hike["Distance"]}" 
     end 
+end 
+
+
+
+######distance from melb - sort by shortest to longest
+def show_dist_from_melb(hiking_data)
+    hiking_data.sort! {|a,b| a['Distance'].to_f <=> b['Distance'].to_f}
+
+
 end 
 
 hiking_data = []
 hiking_data = load_data_from_csv("hiking.csv", hiking_data)
 
-show_hike_dist(hiking_data)
+#show_hike_names(hiking_data)
+
+
+# hiking_data
+# p hiking_data
+
+#show_hike_dist(hiking_data)
     
     
 ######## user can search by hike name, distance of hike, distance from melb, wheelchair or dog friendly
-# loop do 
-#     puts '1. Search for a hike'
-#     puts '2. Enter a hike'
+loop do 
+    puts '1. Search for a hike'
+    puts '2. Enter a hike'
 
-#     action = gets.chomp.to_i
+    action = gets.chomp.to_i
 
 
-#     case action 
-#         when 1 
-#             prompt = TTY::Prompt.new
+    case action 
+        when 1 
+            prompt = TTY::Prompt.new
 
-#             action = prompt.select('What would you like to list by') do |menu|
-#                 menu.choice 'Hike name', 'name'
-#                 menu.choice 'Hike distance', 'distance'
-#                 menu.choice 'Distance from Melbourne', 'distance_from_melb'
-#                 menu.choice 'Wheelchair friendly', 'wheelchair'
-#                 menu.choice 'Dog friendly', 'dog'
-#             end
+            action = prompt.select('What would you like to list by') do |menu|
+                menu.choice 'Hike name', 'name'
+                menu.choice 'Hike distance', 'distance'
+                menu.choice 'Distance from Melbourne', 'distance_from_melb'
+                menu.choice 'Wheelchair friendly', 'wheelchair'
+                menu.choice 'Dog friendly', 'dog'
+            end
 
-#             if action == 'name'
-#                 system 'clear'
-#                 puts "Which hike would you like information on?"
-#                 show_hike_names(hiking_data)
-#                 puts "Select the number of hike"
-#                 input_number = gets.chomp.to_i - 1
+            if action == 'name'
+                system 'clear'
+                puts "Which hike would you like information on?"
+                show_hike_names(hiking_data)
+                puts "Select the number of hike"
+                input_number = gets.chomp.to_i - 1
                 
-#                 system 'clear'
-#                 selected_hike = hiking_data[input_number]
-#                 puts "Name: #{selected_hike["Place"]}"
-#                 puts "Distance(km): #{selected_hike["Distance"]}"
-#                 puts "Distance from Melbourne(km): #{selected_hike["Distance_From_Melbourne"]}"
-#                 puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
-#                 puts "Dog friendly?: #{selected_hike["Dogs?"]}"
+                system 'clear'
+                selected_hike = hiking_data[input_number]
+                puts "Name: #{selected_hike["Place"]}"
+                puts "Distance(km): #{selected_hike["Distance"]}"
+                puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
+                puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
+                puts "Dog friendly?: #{selected_hike["Dogs?"]}"
 
-#                 break 
-
-                
-#             end
-
-#             if action == 'distance'
-#                 system 'clear'
-#                 puts "Which hike would you like information on?"
-#                 show_hike_names
+                break 
 
                 
-#             end 
+            end
+
+            if action == 'distance'
+                system 'clear'
+                puts "Which hike would you like information on? You can do it - there are short hikes!"
+                show_hike_dist(hiking_data)
+                puts "Select the number of hike"
+                input_number = gets.chomp.to_i - 1
+                
+                system 'clear'
+                selected_hike = hiking_data[input_number]
+                puts "Name: #{selected_hike["Place"]}"
+                puts "Distance(km): #{selected_hike["Distance"]}"
+                puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
+                puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
+                puts "Dog friendly?: #{selected_hike["Dogs?"]}"
+
+                break 
+            end 
             
+            # if action == 'distance_from_melb'
+            #     system 'clear'
+            #     puts "Which hike would you like information on? Don't worry, some hikes are really close to Melbourne!"
+            #     break
+            # end 
 
 
-#      end
-# end
+     end
+end
 
         
 
