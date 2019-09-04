@@ -140,7 +140,7 @@ loop do
     case action 
         when 1 
             prompt = TTY::Prompt.new
-            action = prompt.select('What would you like to list by') do |menu|
+            action = prompt.select('What would you like to list by', filter: true) do |menu|
                 menu.choice 'Hike name', 'name'
                 menu.choice 'Hike distance', 'distance'
                 menu.choice 'Distance from Melbourne', 'distance_from_melb'
