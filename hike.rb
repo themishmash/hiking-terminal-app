@@ -22,7 +22,7 @@ def load_data_from_csv(filename, data_array)
     return data_array
 end
 
-####hiking names
+####hiking names  #how to sort by alphabetical?
 def show_hike_names(hiking_data)
     # Need to check why name isnt working
     hiking_data.each_with_index do |hike, index|
@@ -137,7 +137,7 @@ loop do
 
 
     
-            if action == 'name'   #how to sort by alphabetical?
+            if action == 'name'   
                 system 'clear'
                 puts "Which hike would you like information on?"
                 show_hike_names(hiking_data)
@@ -199,7 +199,7 @@ loop do
 
                 place = prompt.ask("Where is the hike located?")
 
-                # wheelchair1 = prompt.yes?("Is it wheelchair friendly?")
+                # rescue 1
             wheelchair = ""
                 loop do
                     begin
@@ -215,14 +215,20 @@ loop do
                 end
 
                 
-                ### rescue
-                
-                dog1 = prompt.yes?("Is it dog friendly?")
-                if dog1 == true
-                    dog = "Y"
-                else dog = "N"
+                ### rescue 2
+            dog = ""
+                loop do  
+                    begin   
+                        dog1 = prompt.yes?("Is it dog friendly?")
+                        if dog1 == true
+                            dog = "Y"
+                        else dog = "N"
+                        end 
+                        break
+                    rescue => error
+                        puts "Please choose Y or N"
+                    end     
                 end 
-
                 ### rescue
             
             hiking_list = [] #array    
