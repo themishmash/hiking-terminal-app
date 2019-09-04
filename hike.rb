@@ -1,8 +1,5 @@
 
-####Main coding doc
-
-
-#Menu
+#########Main coding doc###############
 
 require 'tty-prompt'
 require 'colorize'
@@ -22,13 +19,25 @@ def load_data_from_csv(filename, data_array)
     return data_array
 end
 
-####hiking names  #how to sort by alphabetical?
+####hiking names  #how to sort by alphabetical? - MICHELLE
 def show_hike_names(hiking_data)
     # Need to check why name isnt working
     hiking_data.each_with_index do |hike, index|
         puts "#{index + 1}- #{hike["Place"]}"
     end
 end
+
+####JACK alphabetical - not working as not matching index with it. 
+# def show_hike_names(hiking_data)
+#     data = hiking_data.map {|data| data["Place"]}
+#     p data
+#     data.sort! {|a,b| a.to_s <=> b.to_s}
+
+#     # Need to check why name isnt working
+#     data.each_with_index do |hike, index|
+#         puts "#{index + 1}- #{hike}"
+#     end
+# end
 
 ###distance of hikes - sort by shortest to longest 
 def show_hike_dist(hiking_data)
@@ -87,26 +96,18 @@ def hike_shown(hiking_data)
 end 
 
 #hike_shown(hiking_data)
-
 #show_hike_names(hiking_data)
-
 #hiking_data
-
-#show_hike_dist(hiking_data)
-
+#show_hike_dist(hiking_data)]
 #show_dist_from_melb(hiking_data)
-
 #show_wheelchair(hiking_data)
-
 #show_dogs(hiking_data)
 
 
 
-########START APP############################
+#############################START APP############################
     
-####### user can search by hike name, distance of hike, distance from melb, wheelchair or dog friendly
 font = TTY::Font.new(:doom)
-
 puts font.write("Walk It")
 
 
@@ -116,9 +117,9 @@ puts font.write("Walk It")
 # end
 
 loop do 
-    puts '1. Search for a hike'
-    puts '2. Enter a hike'
-    puts '3. Exit'
+    puts '1. Search for a hike'.colorize(:green)
+    puts '2. Enter a hike'.colorize(:blue)
+    puts '3. Exit'.colorize(:red)
 
     action = gets.chomp.to_i
 
@@ -126,7 +127,6 @@ loop do
     case action 
         when 1 
             prompt = TTY::Prompt.new
-
             action = prompt.select('What would you like to list by') do |menu|
                 menu.choice 'Hike name', 'name'
                 menu.choice 'Hike distance', 'distance'
@@ -135,15 +135,11 @@ loop do
                 menu.choice 'Dog friendly', 'dog'
             end
 
-
-    
             if action == 'name'   
                 system 'clear'
                 puts "Which hike would you like information on?"
                 show_hike_names(hiking_data)
                 hike_shown(hiking_data) #see argument up the top now in accordance with DRY
-            
-
                 break 
             end
 
@@ -152,7 +148,6 @@ loop do
                 puts "Which hike would you like information on? You can do it - there are short hikes!"
                 show_hike_dist(hiking_data)
                 hike_shown(hiking_data)
-
                 break 
             end 
             
@@ -161,7 +156,6 @@ loop do
                 puts "Which hike would you like information on? Don't worry, some hikes are really close to Melbourne!"
                 show_dist_from_melb(hiking_data)
                 hike_shown(hiking_data)
-
                 break
             end 
 
@@ -171,9 +165,7 @@ loop do
                 puts "Which hike would you like more information on?"
                 show_wheelchair(hiking_data)
                 hike_shown(hiking_data)
-
                 break
-
             end 
 
            
@@ -182,7 +174,6 @@ loop do
                 puts "Which hike would you like more information on?"
                 show_dogs(hiking_data)
                 hike_shown(hiking_data)
-
                 break
             end 
     
@@ -190,14 +181,10 @@ loop do
 
         when 2 #enter hike. 
             prompt = TTY::Prompt.new
-
-                hikes = prompt.ask("What is the name of the hike?") 
-
-                distance = prompt.ask("What is the hiking distance? (km)").to_f
-               
-                distance_from_melbourne = prompt.ask("What is the distance from Melbourne? (km)").to_f
-
-                place = prompt.ask("Where is the hike located?")
+            hikes = prompt.ask("What is the name of the hike?") 
+            distance = prompt.ask("What is the hiking distance? (km)").to_f   
+            distance_from_melbourne = prompt.ask("What is the distance from Melbourne? (km)").to_f
+            place = prompt.ask("Where is the hike located?")
 
                 # rescue 1
             wheelchair = ""
@@ -232,7 +219,6 @@ loop do
                 ### rescue
             
             hiking_list = [] #array    
-            
             hike = {
                 Hikes: hikes,
                 Distance: distance,
@@ -248,7 +234,6 @@ loop do
                 hiking_list.each do |hash|
                     csv << hash.values
                 end 
-
             end 
 
             puts "Your hike has been added! Remember, those boots are made for walking!"
@@ -258,12 +243,9 @@ loop do
 
         when 3
             puts "Take a hike!"
-            
             exit 
-
         else 
             system 'clear'
             puts 'Invalid selection. Please choose again'
-            
      end
 end
