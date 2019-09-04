@@ -2,12 +2,13 @@
 
 #Menu
 
-require "date"
-require "geocoder"
+# require "date"
+# require "geocoder"
 require "tty-prompt"
-require "csv"
-require "tty-table"
+require "colorize"
 
+
+require "csv"
 require "pry"
 
 #convert the csv to hash row.to_h
@@ -35,7 +36,6 @@ def show_hike_dist(hiking_data)
        puts "#{index + 1}- #{hike["Place"]} #{hike["Distance"]}" 
     end 
 end 
-
 
 
 ######distance from melb - sort by shortest to longest
@@ -71,8 +71,7 @@ hiking_data = load_data_from_csv("hiking.csv", hiking_data)
 
 
 
-
-######print hike method so DRY
+######print hike method so DRY. This used to be under each action
 def hike_shown(hiking_data)
     puts "Select the number of hike you'd like more info on"
     input_number = gets.chomp.to_i - 1
@@ -88,13 +87,8 @@ end
 
 #hike_shown(hiking_data)
 
-
-
-
 #show_hike_names(hiking_data)
 
-
-# hiking_data
 #hiking_data
 
 #show_hike_dist(hiking_data)
@@ -132,17 +126,6 @@ loop do
                 puts "Which hike would you like information on?"
                 show_hike_names(hiking_data)
                 hike_shown(hiking_data) #see argument up the top now in accordance with DRY
-                
-                ####put this into method so less repetition!!!!!
-                # puts "Select the number of hike you'd like more info on"
-                # input_number = gets.chomp.to_i - 1
-                # system 'clear'
-                # selected_hike = hiking_data[input_number]
-                # puts "Name: #{selected_hike["Place"]}"
-                # puts "Distance(km): #{selected_hike["Distance"]}"
-                # puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
-                # puts "Wheelchair friendly?: #{selected_hike["Wheelchair?"]}"
-                # puts "Dog friendly?: #{selected_hike["Dogs?"]}"
             
 
                 break 
@@ -153,16 +136,6 @@ loop do
                 puts "Which hike would you like information on? You can do it - there are short hikes!"
                 show_hike_dist(hiking_data)
                 hike_shown(hiking_data)
-                ####DRY
-                # puts "Select the number of hike you'd like more info on"
-                # input_number = gets.chomp.to_i - 1
-                # system 'clear'
-                # selected_hike = hiking_data[input_number]
-                # puts "Name: #{selected_hike["Place"]}"
-                # puts "Distance(km): #{selected_hike["Distance"]}"
-                # puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
-                # puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
-                # puts "Dog friendly?: #{selected_hike["Dogs?"]}"
 
                 break 
             end 
@@ -173,43 +146,19 @@ loop do
                 show_dist_from_melb(hiking_data)
                 hike_shown(hiking_data)
 
-                # puts "Select the number of the hike you'd like more info on"
-                # input_number = gets.chomp.to_i - 1
-                # system 'clear'
-                # selected_hike = hiking_data[input_number]
-                # puts "Name: #{selected_hike["Place"]}"
-                # puts "Distance(km): #{selected_hike["Distance"]}"
-                # puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
-                # puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
-                # puts "Dog friendly?: #{selected_hike["Dogs?"]}"
-
-
                 break
             end 
 
 
-            
             if action == 'wheelchair'
                 system 'clear'
                 puts "Which hike would you like more information on?"
                 show_wheelchair(hiking_data)
                 hike_shown(hiking_data)
 
-                # puts "Select the number of the hike you'd like more info on"
-                # input_number = gets.chomp.to_i - 1   
-                # system 'clear'
-                # selected_hike = hiking_data[input_number]
-                # puts "Name: #{selected_hike["Place"]}"
-                # puts "Distance(km): #{selected_hike["Distance"]}"
-                # puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
-                # puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
-                # puts "Dog friendly?: #{selected_hike["Dogs?"]}"
-
                 break
 
             end 
-
-
 
            
             if action == 'dog'
@@ -218,24 +167,53 @@ loop do
                 show_dogs(hiking_data)
                 hike_shown(hiking_data)
 
-                # puts "Select the number of the hike you'd like more info on"
-                # input_number = gets.chomp.to_i - 1   
-                # system 'clear'
-                # selected_hike = hiking_data[input_number]
-                # puts "Name: #{selected_hike["Place"]}"
-                # puts "Distance(km): #{selected_hike["Distance"]}"
-                # puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
-                # puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
-                # puts "Dog friendly?: #{selected_hike["Dogs?"]}"
-
                 break
             end 
     
 
 
-        when 2
+        when 2 #enter hike. 
+            prompt = TTY::Prompt.new
+                hiking_list = [] #array
 
-        
+                hikes = prompt.ask("What is the name of the hike?") 
+
+                distance = prompt.ask("What is the hiking distance?").to_f
+               
+                distance_from_melbourne = prompt.ask("What is the distance from Melbourne?").to_f
+
+                place = prompt.ask("Where is the hike located?")
+
+                wheelchair1 = prompt.yes?("Is it wheelchair friendly?")
+                if wheelchair1 == true
+                    wheelchair = "Y"
+                else wheelchair = "N"
+                end 
+                ### rescue
+                
+                
+                dog1 = prompt.yes?("Is it dog friendly?")
+                if dog1 == true
+                    dog = "Y"
+                else dog = "N"
+                end 
+
+                ### rescue
+                
+            hike = {
+                Hikes: hikes,
+                Distance: distance,
+                Distance_From_Melbourne: distance_from_melbourne,
+                Place: place,
+                Wheelchair?: wheelchair,
+                Dog?: dog
+            }
+
+            hiking_list << (hike)
+
+            puts "Your hike has been added! Remember, those boots are made for walking!"
+
+            p hiking_list
 
 
         when 3
