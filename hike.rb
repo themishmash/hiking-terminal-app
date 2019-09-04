@@ -4,10 +4,10 @@
 
 #Menu
 
-require "tty-prompt"
-require "colorize"
-require "tty-font"
-
+require 'tty-prompt'
+require 'colorize'
+require 'tty-font'
+require 'terminal-table'
 
 require 'CSV'
 
@@ -99,11 +99,22 @@ end
 #show_wheelchair(hiking_data)
 
 #show_dogs(hiking_data)
-    
+
+
+
+########START APP############################
     
 ####### user can search by hike name, distance of hike, distance from melb, wheelchair or dog friendly
 font = TTY::Font.new(:doom)
-puts font.write("We can walk it out")
+
+puts font.write("Walk It")
+
+
+# if ARGV = show_hike_names(hiking_data)
+#     show_hike_names
+#     exit
+# end
+
 loop do 
     puts '1. Search for a hike'
     puts '2. Enter a hike'
@@ -124,6 +135,8 @@ loop do
                 menu.choice 'Dog friendly', 'dog'
             end
 
+
+    
             if action == 'name'   #how to sort by alphabetical?
                 system 'clear'
                 puts "Which hike would you like information on?"
@@ -186,11 +199,22 @@ loop do
 
                 place = prompt.ask("Where is the hike located?")
 
-                wheelchair1 = prompt.yes?("Is it wheelchair friendly?")
-                if wheelchair1 == true
-                    wheelchair = "Y"
-                else wheelchair = "N"
-                end 
+                # wheelchair1 = prompt.yes?("Is it wheelchair friendly?")
+            wheelchair = ""
+                loop do
+                    begin
+                        wheelchair1 = prompt.yes?("Is it wheelchair friendly?")
+                        if wheelchair1 == true
+                            wheelchair = "Y"
+                        else wheelchair = "N"
+                        end 
+                        break 
+                    rescue => error
+                        puts "Please choose Y or N"
+                    end
+                end
+
+                
                 ### rescue
                 
                 dog1 = prompt.yes?("Is it dog friendly?")
@@ -237,141 +261,3 @@ loop do
             
      end
 end
-
-        
-
-#widget example
-# File.open('widget-resources/widget-data-out.csv', 'w+') do |file|
-#     arr_header.unshift('id')
-#     file.write(arr_header.join(','))
-#     arr_widget_objects.each do |object|
-#         file.write(object.to_csv)
-#     end
-# end
-
-
-
-
-
-
-
-
-
-
-
-# loop do 
-#     puts '1. Search for a hike'
-#     puts '2. Enter a hike'
-
-#     action = gets.chomp.to_i
-
-
-#     case action 
-#     when 1 
-    
-#         prompt = TTY::Prompt.new
-
-#         action = prompt.select('What would you like to search by') do |menu|
-#             menu.choice 'Hike name', 1
-#             menu.choice 'Hike distance', 2
-#             menu.choice 'Distance from Melbourne', 3
-#             menu.choice 'Wheel chair friendly', 4
-#             menu.choice 'Dog friendly', 5
-#         end
-        
-
-#         #menu 1, option 1
-#         case action
-#         when 1
-#             arr_headers = []
-#             hike_values = []
-            
-            
-#           File.open("hiking.csv", 'r').each_with_index do |line, index|
-#                 if line.length > 0
-#                     if index == 0
-#                     arr_headers << line
-#                     else 
-#                         hike_values << line
-#                     end 
-#                 end 
-#             end
-
-
-
-#             p arr_headers
-#             p hike_values
-    
-
-            
-
-
-
-#         end 
-
-        
-#         break #to break out of initial menu
-
-
-
-        
-
-#         case action 
-#         when 2
-#         end 
-
-#         case action 
-#         when 3
-
-#         end 
-
-
-#         case action
-
-#         when 4
-
-#         end 
-
-
-
-#         case action
-#         when 5
-
-#         end 
-     
-     
-#     end 
-
-
-    
-    
-    
-#     case action
-#     when 2
-#         prompt = TTY::Prompt.new
-#         prompt.yes?('Please confirm you would like to enter a hike') do |q|
-#             q.suffix 'Y/N'
-#         end
-#     end 
-
-# end 
-
-
-# #classes
-
-# class Hike
-
-#     def initialize(hike_name, hike_dist, dist_melb, wheelchair, dog)
-#         @hike_name = hike_name
-#         @hike_dist = hike_dist
-#         @dist_melb  = dist_melb
-#         @wheelchair = wheelchair
-#         @dog_friend = dog
-
-#     end 
-
-#     def @hiking_name
-
-#     end 
-
-# end 
