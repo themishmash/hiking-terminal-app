@@ -4,6 +4,7 @@
 require 'tty-prompt'
 require 'colorize'
 require 'tty-font'
+require 'tty-spinner'
 require 'terminal-table'
 
 require 'CSV'
@@ -251,13 +252,18 @@ loop do
                 end 
             end 
 
+            spinner = TTY::Spinner.new("[:spinner] Loading ...", format: :bouncing_ball)
+            spinner.auto_spin # Automatic animation with default interval
+            sleep(2) # Perform task
+            spinner.stop('Done!') # Stop animation
             puts "Your hike has been added! Remember, those boots are made for walking!"
-
+            
            #p hiking_list
 
 
         when 3
             puts "Take a hike!"
+            puts `say "Take a hike!"`
             exit 
         else 
             system 'clear'
