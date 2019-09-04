@@ -7,12 +7,12 @@ require 'tty-font'
 require 'terminal-table'
 
 require 'CSV'
+require 'pry'
 
 
 #convert the csv to hash row.to_h
 def load_data_from_csv(filename, data_array)
     csv_file = CSV.read("#{filename}", headers: true)
-    
     csv_file.each do |row|
         data_array << row.to_h
     end
@@ -23,7 +23,7 @@ end
 def show_hike_names(hiking_data)
     # Need to check why name isnt working
     hiking_data.each_with_index do |hike, index|
-        puts "#{index + 1}- #{hike["Place"]}"
+        puts "#{index + 1}- #{hike["Hike"]}"
     end
 end
 
@@ -52,7 +52,7 @@ end
 def show_dist_from_melb(hiking_data)
     hiking_data.sort! {|a,b| a['Distance_From_Melbourne'].to_f <=> b['Distance_From_Melbourne'].to_f}
     hiking_data.each_with_index do |hike, index|
-        puts "#{index + 1}- #{hike["Place"]} #{hike["Distance_From_Melbourne"]}"
+        puts "#{index + 1}- #{hike["Hike"]} #{hike["Distance_From_Melbourne"]}"
     end 
 end 
 
@@ -63,7 +63,7 @@ def show_wheelchair(hiking_data)
     wheelchair_result = hiking_data.select! {|data| data["Wheelchair?"] == 'Y'} #how to get if data = Y
 
     wheelchair_result.each_with_index do |hike, index|
-        puts "#{index + 1}- #{hike["Place"]} #{hike["Wheelchair?"]}" 
+        puts "#{index + 1}- #{hike["Hike"]} #{hike["Wheelchair?"]}" 
     end 
 end 
 
@@ -72,13 +72,12 @@ end
 def show_dogs(hiking_data)
     dog_result = hiking_data.select! {|data| data["Dogs?"] == 'Y'}
     dog_result.each_with_index do |hike, index|
-        puts "#{index + 1}- #{hike["Place"]} #{hike["Dogs?"]}" 
+        puts "#{index + 1}- #{hike["Hike"]} #{hike["Dogs?"]}" 
     end 
 end 
 
 hiking_data = []
 hiking_data = load_data_from_csv("hiking.csv", hiking_data)
-
 
 
 ######print hike method so DRY. This used to be under each action
@@ -87,7 +86,7 @@ def hike_shown(hiking_data)
     input_number = gets.chomp.to_i - 1
     selected_hike = hiking_data[input_number]
     
-    puts "Name: #{selected_hike["Place"]}"
+    puts "Name: #{selected_hike["Hike"]}"
     puts "Distance(km): #{selected_hike["Distance"]}"
     puts "Distance from Melbourne(km): #{selected_hike["Distance_From_Melbourne"]}"
     puts "Wheelchair friendly?: #{selected_hike["Wheelchair?"]}"
