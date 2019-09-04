@@ -17,7 +17,6 @@ def load_data_from_csv(filename, data_array)
     csv_file.each do |row|
         data_array << row.to_h
     end
-
     return data_array
 end
 
@@ -61,7 +60,7 @@ end
 
 #####dogs - sort by yes
 def show_dogs(hiking_data)
-    dog_result = hiking_data.select {|data| data["Dogs?"] == 'Y'}
+    dog_result = hiking_data.select! {|data| data["Dogs?"] == 'Y'}
     dog_result.each_with_index do |hike, index|
         puts "#{index + 1}- #{hike["Place"]} #{hike["Dogs?"]}" 
     end 
@@ -69,6 +68,28 @@ end
 
 hiking_data = []
 hiking_data = load_data_from_csv("hiking.csv", hiking_data)
+
+
+
+
+######print hike method so DRY
+def hike_shown(hiking_data)
+    puts "Select the number of hike you'd like more info on"
+    input_number = gets.chomp.to_i - 1
+    selected_hike = hiking_data[input_number]
+    
+    puts "Name: #{selected_hike["Place"]}"
+    puts "Distance(km): #{selected_hike["Distance"]}"
+    puts "Distance from Melbourne(km): #{selected_hike["Distance_From_Melbourne"]}"
+    puts "Wheelchair friendly?: #{selected_hike["Wheelchair?"]}"
+    puts "Dog friendly?: #{selected_hike["Dogs?"]}"
+    
+end 
+
+#hike_shown(hiking_data)
+
+
+
 
 #show_hike_names(hiking_data)
 
@@ -85,10 +106,11 @@ hiking_data = load_data_from_csv("hiking.csv", hiking_data)
 #show_dogs(hiking_data)
     
     
-######## user can search by hike name, distance of hike, distance from melb, wheelchair or dog friendly
+####### user can search by hike name, distance of hike, distance from melb, wheelchair or dog friendly
 loop do 
     puts '1. Search for a hike'
     puts '2. Enter a hike'
+    puts '3. Exit'
 
     action = gets.chomp.to_i
 
@@ -109,36 +131,38 @@ loop do
                 system 'clear'
                 puts "Which hike would you like information on?"
                 show_hike_names(hiking_data)
-                puts "Select the number of hike you'd like more info on"
-                input_number = gets.chomp.to_i - 1
+                hike_shown(hiking_data) #see argument up the top now in accordance with DRY
                 
-                system 'clear'
-                selected_hike = hiking_data[input_number]
-                puts "Name: #{selected_hike["Place"]}"
-                puts "Distance(km): #{selected_hike["Distance"]}"
-                puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
-                puts "Wheelchair friendly?: #{selected_hike["Wheelchair?"]}"
-                puts "Dog friendly?: #{selected_hike["Dogs?"]}"
+                ####put this into method so less repetition!!!!!
+                # puts "Select the number of hike you'd like more info on"
+                # input_number = gets.chomp.to_i - 1
+                # system 'clear'
+                # selected_hike = hiking_data[input_number]
+                # puts "Name: #{selected_hike["Place"]}"
+                # puts "Distance(km): #{selected_hike["Distance"]}"
+                # puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
+                # puts "Wheelchair friendly?: #{selected_hike["Wheelchair?"]}"
+                # puts "Dog friendly?: #{selected_hike["Dogs?"]}"
+            
 
                 break 
-
-                
             end
 
             if action == 'distance'
                 system 'clear'
                 puts "Which hike would you like information on? You can do it - there are short hikes!"
                 show_hike_dist(hiking_data)
-                puts "Select the number of hike you'd like more info on"
-                input_number = gets.chomp.to_i - 1
-                
-                system 'clear'
-                selected_hike = hiking_data[input_number]
-                puts "Name: #{selected_hike["Place"]}"
-                puts "Distance(km): #{selected_hike["Distance"]}"
-                puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
-                puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
-                puts "Dog friendly?: #{selected_hike["Dogs?"]}"
+                hike_shown(hiking_data)
+                ####DRY
+                # puts "Select the number of hike you'd like more info on"
+                # input_number = gets.chomp.to_i - 1
+                # system 'clear'
+                # selected_hike = hiking_data[input_number]
+                # puts "Name: #{selected_hike["Place"]}"
+                # puts "Distance(km): #{selected_hike["Distance"]}"
+                # puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
+                # puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
+                # puts "Dog friendly?: #{selected_hike["Dogs?"]}"
 
                 break 
             end 
@@ -147,38 +171,39 @@ loop do
                 system 'clear'
                 puts "Which hike would you like information on? Don't worry, some hikes are really close to Melbourne!"
                 show_dist_from_melb(hiking_data)
-                puts "Select the number of the hike you'd like more info on"
-                input_number = gets.chomp.to_i 
-                
-                system 'clear'
-                selected_hike = hiking_data[input_number]
-                puts "Name: #{selected_hike["Place"]}"
-                puts "Distance(km): #{selected_hike["Distance"]}"
-                puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
-                puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
-                puts "Dog friendly?: #{selected_hike["Dogs?"]}"
+                hike_shown(hiking_data)
+
+                # puts "Select the number of the hike you'd like more info on"
+                # input_number = gets.chomp.to_i - 1
+                # system 'clear'
+                # selected_hike = hiking_data[input_number]
+                # puts "Name: #{selected_hike["Place"]}"
+                # puts "Distance(km): #{selected_hike["Distance"]}"
+                # puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
+                # puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
+                # puts "Dog friendly?: #{selected_hike["Dogs?"]}"
 
 
                 break
             end 
 
 
-            ####need to work out how to align new data with numbers
+            
             if action == 'wheelchair'
                 system 'clear'
                 puts "Which hike would you like more information on?"
                 show_wheelchair(hiking_data)
-                puts "Select the number of the hike you'd like more info on"
+                hike_shown(hiking_data)
 
-                input_number = gets.chomp.to_i - 1   ##this only works if commented out
-
-                system 'clear'
-                selected_hike = hiking_data[input_number]
-                puts "Name: #{selected_hike["Place"]}"
-                puts "Distance(km): #{selected_hike["Distance"]}"
-                puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
-                puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
-                puts "Dog friendly?: #{selected_hike["Dogs?"]}"
+                # puts "Select the number of the hike you'd like more info on"
+                # input_number = gets.chomp.to_i - 1   
+                # system 'clear'
+                # selected_hike = hiking_data[input_number]
+                # puts "Name: #{selected_hike["Place"]}"
+                # puts "Distance(km): #{selected_hike["Distance"]}"
+                # puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
+                # puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
+                # puts "Dog friendly?: #{selected_hike["Dogs?"]}"
 
                 break
 
@@ -186,22 +211,22 @@ loop do
 
 
 
-            #####need to work out how to align new data with numbers
+           
             if action == 'dog'
                 system 'clear'
                 puts "Which hike would you like more information on?"
                 show_dogs(hiking_data)
-                puts "Select the number of the hike you'd like more info on"
-                
-                input_number = gets.chomp.to_i - 1   ##this only works if commented out
+                hike_shown(hiking_data)
 
-                system 'clear'
-                selected_hike = hiking_data[input_number]
-                puts "Name: #{selected_hike["Place"]}"
-                puts "Distance(km): #{selected_hike["Distance"]}"
-                puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
-                puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
-                puts "Dog friendly?: #{selected_hike["Dogs?"]}"
+                # puts "Select the number of the hike you'd like more info on"
+                # input_number = gets.chomp.to_i - 1   
+                # system 'clear'
+                # selected_hike = hiking_data[input_number]
+                # puts "Name: #{selected_hike["Place"]}"
+                # puts "Distance(km): #{selected_hike["Distance"]}"
+                # puts "Distance from Melbourne(km): #{selected_hike    ["Distance_From_Melbourne"]}"
+                # puts "Wheelchair friendly?: #{selected_hike["WheelChair?"]}"
+                # puts "Dog friendly?: #{selected_hike["Dogs?"]}"
 
                 break
             end 
@@ -209,8 +234,19 @@ loop do
 
 
         when 2
-            
 
+        
+
+
+        when 3
+            puts "Take a hike!"
+            
+            exit 
+
+        else 
+            system 'clear'
+            puts 'Invalid selection. Please choose again'
+            
      end
 end
 
@@ -328,12 +364,13 @@ end
 # #classes
 
 # class Hike
-#     def initialize(hike_name, hike_dist, dist_melb, wheelchair, dog_friend)
+
+#     def initialize(hike_name, hike_dist, dist_melb, wheelchair, dog)
 #         @hike_name = hike_name
 #         @hike_dist = hike_dist
 #         @dist_melb  = dist_melb
 #         @wheelchair = wheelchair
-#         @dog_friend = dog_friend
+#         @dog_friend = dog
 
 #     end 
 
