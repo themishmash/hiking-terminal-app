@@ -39,7 +39,7 @@ end
 #     end
 # end
 
-###distance of hikes - sort by shortest to longest 
+###distance of hikes - sort by shortest to longest using block
 def show_hike_dist(hiking_data)
     hiking_data.sort! {|a,b| a['Distance'].to_f <=> b['Distance'].to_f} #block from Jack
     hiking_data.each_with_index do |hike, index|
@@ -68,15 +68,14 @@ end
 ###### wheelchair - sort by yes
 def show_wheelchair(hiking_data)
     #how to get if y
-    wheelchair_result = hiking_data.select! {|data| data["Wheelchair?"] == 'Y'} #how to get if data = Y
-
+    wheelchair_result = hiking_data.select! {|data| data["Wheelchair?"] == 'Y'} 
     wheelchair_result.each_with_index do |hike, index|
         puts "#{index + 1}- #{hike["Hike"]} #{hike["Wheelchair?"]}" 
     end 
 end 
 
 
-#####dogs - sort by yes
+#####dogs - sort by yes#######
 def show_dogs(hiking_data)
     dog_result = hiking_data.select! {|data| data["Dogs?"] == 'Y'}
     dog_result.each_with_index do |hike, index|
@@ -112,13 +111,13 @@ end
 
 
 
+
+
+
 #############################START APP############################
     
 font = TTY::Font.new(:doom)
 puts font.write("Walk It")
-
-
-
 
 ########ARGV######## (had to change every gets and put STDIN in front)
 
