@@ -57,6 +57,14 @@ def show_dist_from_melb(hiking_data)
 end 
 
 
+######place############
+def show_place(hiking_data)
+    hiking_data.each_with_index do |hike, index|
+        puts "#{index + 1}- #{hike["Place"]}"
+    end 
+end 
+
+
 ###### wheelchair - sort by yes
 def show_wheelchair(hiking_data)
     #how to get if y
@@ -130,6 +138,7 @@ loop do
                 menu.choice 'Hike name', 'name'
                 menu.choice 'Hike distance', 'distance'
                 menu.choice 'Distance from Melbourne', 'distance_from_melb'
+                menu.choice 'Place name', 'place'
                 menu.choice 'Wheelchair friendly', 'wheelchair'
                 menu.choice 'Dog friendly', 'dog'
             end
@@ -156,6 +165,13 @@ loop do
                 show_dist_from_melb(hiking_data)
                 hike_shown(hiking_data)
                 break
+            end 
+
+            if action == 'place'
+                system 'clear'
+                puts "Which hike would you like information on?"
+                show_place(hiking_data)
+                hike_shown(hiking_data)
             end 
 
 
