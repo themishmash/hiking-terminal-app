@@ -1,15 +1,16 @@
 
+####Main coding doc
+
 
 #Menu
 
-# require "date"
-# require "geocoder"
 require "tty-prompt"
 require "colorize"
+require "tty-font"
 
 
-require "csv"
-require "pry"
+require 'CSV'
+
 
 #convert the csv to hash row.to_h
 def load_data_from_csv(filename, data_array)
@@ -101,6 +102,8 @@ end
     
     
 ####### user can search by hike name, distance of hike, distance from melb, wheelchair or dog friendly
+font = TTY::Font.new(:doom)
+puts font.write("We can walk it out")
 loop do 
     puts '1. Search for a hike'
     puts '2. Enter a hike'
@@ -174,13 +177,12 @@ loop do
 
         when 2 #enter hike. 
             prompt = TTY::Prompt.new
-                hiking_list = [] #array
 
                 hikes = prompt.ask("What is the name of the hike?") 
 
-                distance = prompt.ask("What is the hiking distance?").to_f
+                distance = prompt.ask("What is the hiking distance? (km)").to_f
                
-                distance_from_melbourne = prompt.ask("What is the distance from Melbourne?").to_f
+                distance_from_melbourne = prompt.ask("What is the distance from Melbourne? (km)").to_f
 
                 place = prompt.ask("Where is the hike located?")
 
@@ -191,7 +193,6 @@ loop do
                 end 
                 ### rescue
                 
-                
                 dog1 = prompt.yes?("Is it dog friendly?")
                 if dog1 == true
                     dog = "Y"
@@ -199,7 +200,9 @@ loop do
                 end 
 
                 ### rescue
-                
+            
+            hiking_list = [] #array    
+            
             hike = {
                 Hikes: hikes,
                 Distance: distance,
@@ -211,9 +214,16 @@ loop do
 
             hiking_list << (hike)
 
+            CSV.open('hiking.csv', 'a') do |csv|
+                hiking_list.each do |hash|
+                    csv << hash.values
+                end 
+
+            end 
+
             puts "Your hike has been added! Remember, those boots are made for walking!"
 
-            p hiking_list
+           #p hiking_list
 
 
         when 3
@@ -230,6 +240,14 @@ end
 
         
 
+#widget example
+# File.open('widget-resources/widget-data-out.csv', 'w+') do |file|
+#     arr_header.unshift('id')
+#     file.write(arr_header.join(','))
+#     arr_widget_objects.each do |object|
+#         file.write(object.to_csv)
+#     end
+# end
 
 
 
