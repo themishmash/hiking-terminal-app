@@ -120,7 +120,6 @@ font = TTY::Font.new(:doom)
 puts font.write("Walk It")
 
 ########ARGV######## (had to change every gets and put STDIN in front)
-
 name = ""
 def get_name_hike
     return hike_name = ARGV[0]
@@ -128,6 +127,7 @@ end
 
 hike_name = get_name_hike
 #puts hike_name
+
 
 loop do 
     puts '1. Search for a hike'.colorize(:green)
@@ -140,7 +140,7 @@ loop do
     case action 
         when 1 
             prompt = TTY::Prompt.new
-            action = prompt.select('What would you like to list by', filter: true) do |menu|
+            action = prompt.select('What would you like to list by') do |menu|
                 menu.choice 'Hike name', 'name'
                 menu.choice 'Hike distance', 'distance'
                 menu.choice 'Distance from Melbourne', 'distance_from_melb'
