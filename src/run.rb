@@ -101,23 +101,23 @@ loop do
 
             hikes = prompt.ask('What is the name of the hike?') 
 
-                loop do
-            distance = prompt.ask('What is the hiking distance? (km)').to_f
-                    if distance == '' || distance == 0
+            loop do
+                distance = prompt.ask('What is the hiking distance? (km)').to_f
+                if distance == '' || distance == 0
                     puts 'Please enter again'
-                    elsif distance > 0
-                        break 
-                    end 
+                elsif distance > 0
+                    break 
                 end 
+            end 
 
-                loop do
-            distance_from_melbourne = prompt.ask('What is the distance from Melbourne? (km)').to_f
-                    if distance_from_melbourne == '' || distance_from_melbourne == 0
+            loop do
+                distance_from_melbourne = prompt.ask('What is the distance from Melbourne? (km)').to_f
+                if distance_from_melbourne == '' || distance_from_melbourne == 0
                         puts 'Please enter again'
-                    elsif distance_from_melbourne > 0
-                        break
-                    end 
+                elsif distance_from_melbourne > 0
+                    break
                 end 
+            end 
 
             place = prompt.ask('Where is the hike located?')
 
