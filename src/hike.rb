@@ -43,7 +43,7 @@ end
 def show_hike_dist(hiking_data)
     hiking_data.sort! {|a,b| a['Distance'].to_f <=> b['Distance'].to_f} #block from Jack
     hiking_data.each_with_index do |hike, index|
-       puts "#{index + 1}- #{hike["Place"]} #{hike["Distance"]}" 
+       puts "#{index + 1}- #{hike["Hike"]} #{hike["Distance"]}" 
     end 
 end 
 

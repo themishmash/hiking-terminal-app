@@ -3,7 +3,8 @@ require_relative "hike.rb"
 #############################START APP############################
     
 font = TTY::Font.new(:doom)
-puts font.write("Walk It")
+puts font.write("We Can Walk It Out")
+puts "A hiking app for all fitness levels!".colorize(:black).on_green.underline
 
 ########ARGV######## (had to change every gets and put STDIN in front)
 name = ""

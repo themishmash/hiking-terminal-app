@@ -1,8 +1,4 @@
-
-
-
-
-# Software Development Plan - We can Walk It Out
+# Software Development Plan - We Can Walk It Out
 By Michelle Wong
 
 This plan will include the following:
@@ -10,7 +6,7 @@ This plan will include the following:
 * Features
 * User interaction and Experience
 * Control Flow Diagram
-* Status updates - Please refer to development-log.md
+* Status updates - Please refer to my [development-log.md](development-log.md)
 * Help file
 * Test application
 
@@ -144,6 +140,7 @@ You must include:
 - any system/hardware requirements
 - a written explanation of the different features of the application
 
+
 ### Steps to install application / dependencies / hardware requirements
 
 For Mac Users:
@@ -169,7 +166,7 @@ For example, if users click on the hike name feature, all hike names will be dis
 ### Enter a hike
 If users click on this, they will be presented with a series of questions that align with the headers of the CSV file. They enter their answers which are then stored in an array of hashes. This array of hashes are then pushed into the hiking CSV file. 
 
-Please refer to the list of features in [Statement of purpose and scope](#list-of-features) above for more detailed information. 
+Please refer to the list of features in [Statement of purpose and scope; List of features](#list-of-features) above for more detailed information. 
 
 
 ## Test application
@@ -213,9 +210,7 @@ puts check_file_exists('hiking.csv')
 puts check_add_hike
 ````
 
-
-
-* manual testing. This is the link to the manual testing in detail [Link text](https://docs.google.com/spreadsheets/d/194DTAsyTxVmcwEmlERnpcEnefffcY9tf8t00JSTrAQk/edit#gid=883346421)
+* Manual testing. This is the link to the manual testing in detail. [Google sheet](https://docs.google.com/spreadsheets/d/194DTAsyTxVmcwEmlERnpcEnefffcY9tf8t00JSTrAQk/edit#gid=883346421)
 
 
 For more information, please refer to how errors are handled in [User Interaction and Experience](#How-errors-will-be-handled-by-the-application-and-displayed-to-the-user)
