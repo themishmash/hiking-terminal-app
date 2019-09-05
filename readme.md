@@ -216,6 +216,10 @@ puts check_add_hike
 For more information, please refer to how errors are handled in [User Interaction and Experience](#How-errors-will-be-handled-by-the-application-and-displayed-to-the-user)
 
 
+## Future Improvements
+There are a few things that could be improved. 
+
+
 
 
 
