@@ -149,12 +149,18 @@ loop do
                 menu.choice 'Dog friendly', 'dog'
             end
 
+            file_exist = File.exist?('hiking.csv')
+            if file_exist == false
+                file_exist = prompt.yes? ('Error: Sorry this info is not available now. Please let the administrator know.')
+            end 
+            
+
             if action == 'name'   
                 system 'clear'
                 puts "Which hike would you like information on?"
                 show_hike_names(hiking_data)
                 hike_shown(hiking_data) #see argument up the top now in accordance with DRY
-                break 
+                
             end
 
             if action == 'distance'
@@ -162,7 +168,7 @@ loop do
                 puts "Which hike would you like information on? You can do it - there are short hikes!"
                 show_hike_dist(hiking_data)
                 hike_shown(hiking_data)
-                break 
+                
             end 
             
             if action == 'distance_from_melb'
@@ -170,7 +176,7 @@ loop do
                 puts "Which hike would you like information on? Don't worry, some hikes are really close to Melbourne!"
                 show_dist_from_melb(hiking_data)
                 hike_shown(hiking_data)
-                break
+                
             end 
 
             if action == 'place'
@@ -186,7 +192,7 @@ loop do
                 puts "Which hike would you like more information on?"
                 show_wheelchair(hiking_data)
                 hike_shown(hiking_data)
-                break
+                
             end 
 
            
@@ -195,7 +201,7 @@ loop do
                 puts "Which hike would you like more information on?"
                 show_dogs(hiking_data)
                 hike_shown(hiking_data)
-                break
+                
             end 
     
 
