@@ -3,8 +3,8 @@ require_relative "hike.rb"
 #############################START APP############################
     
 font = TTY::Font.new(:doom)
-puts font.write("We Can Walk It Out")
-puts "A hiking app for all fitness levels!".colorize(:black).on_green.underline
+puts font.write('We Can Walk It Out')
+puts 'A hiking app for all fitness levels!'.colorize(:black).on_green.underline
 
 ########ARGV######## (had to change every gets and put STDIN in front)
 name = ""
@@ -16,7 +16,7 @@ hike_name = get_name_hike
 #puts hike_name
 
 hiking_data = []
-hiking_data = load_data_from_csv("hiking.csv", hiking_data)
+hiking_data = load_data_from_csv('hiking.csv', hiking_data)
 
 loop do 
     puts '1. Search for a hike'.colorize(:green)
@@ -47,7 +47,7 @@ loop do
 
             if action == 'name'   
                 system 'clear'
-                puts "Which hike would you like information on?"
+                puts 'Which hike would you like information on?'
                 show_hike_names(hiking_data)
                 hike_shown(hiking_data) #see argument up the top now in accordance with DRY
                 
@@ -55,7 +55,7 @@ loop do
 
             if action == 'distance'
                 system 'clear'
-                puts "Which hike would you like information on? You can do it - there are short hikes!"
+                puts 'Which hike would you like information on? You can do it - there are short hikes!'
                 show_hike_dist(hiking_data)
                 hike_shown(hiking_data)
                 
@@ -71,7 +71,7 @@ loop do
 
             if action == 'place'
                 system 'clear'
-                puts "Which hike would you like information on?"
+                puts 'Which hike would you like information on?'
                 show_place(hiking_data)
                 hike_shown(hiking_data)
             end 
@@ -79,7 +79,7 @@ loop do
 
             if action == 'wheelchair'
                 system 'clear'
-                puts "Which hike would you like more information on?"
+                puts 'Which hike would you like more information on?'
                 show_wheelchair(hiking_data)
                 hike_shown(hiking_data)
                 
@@ -88,7 +88,7 @@ loop do
            
             if action == 'dog'
                 system 'clear'
-                puts "Which hike would you like more information on?"
+                puts 'Which hike would you like more information on?'
                 show_dogs(hiking_data)
                 hike_shown(hiking_data)
                 
@@ -98,23 +98,23 @@ loop do
 
         when 2 #enter hike. 
             prompt = TTY::Prompt.new
-            hikes = prompt.ask("What is the name of the hike?") 
-            distance = prompt.ask("What is the hiking distance? (km)").to_f   
-            distance_from_melbourne = prompt.ask("What is the distance from Melbourne? (km)").to_f
-            place = prompt.ask("Where is the hike located?")
+            hikes = prompt.ask('What is the name of the hike?') 
+            distance = prompt.ask('What is the hiking distance? (km)').to_f   
+            distance_from_melbourne = prompt.ask('What is the distance from Melbourne? (km)').to_f
+            place = prompt.ask('Where is the hike located?')
 
                 # rescue 1
             wheelchair = ""
                 loop do
                     begin
-                        wheelchair1 = prompt.yes?("Is it wheelchair friendly?")
+                        wheelchair1 = prompt.yes?('Is it wheelchair friendly?')
                         if wheelchair1 == true
-                            wheelchair = "Y"
-                        else wheelchair = "N"
+                            wheelchair = 'Y'
+                        else wheelchair = 'N'
                         end 
                         break 
                     rescue => error
-                        puts "Please choose Y or N"
+                        puts 'Please choose Y or N'
                     end
                 end
 
@@ -123,14 +123,14 @@ loop do
             dog = ""
                 loop do  
                     begin   
-                        dog1 = prompt.yes?("Is it dog friendly?")
+                        dog1 = prompt.yes?('Is it dog friendly?')
                         if dog1 == true
-                            dog = "Y"
-                        else dog = "N"
+                            dog = 'Y'
+                        else dog = 'N'
                         end 
                         break
                     rescue => error
-                        puts "Please choose Y or N"
+                        puts 'Please choose Y or N'
                     end     
                 end 
                 ### rescue
@@ -138,7 +138,7 @@ loop do
 
         when 3
             puts "Take a hike!"
-            puts `say "Take a hike!"`
+            puts `say 'Take a hike!'`
             exit 
         else 
             system 'clear'
