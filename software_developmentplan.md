@@ -66,11 +66,15 @@ Your outline must include:
 - how errors will be handled by the application and displayed to the user
 
 ### How the user will find out how to interact with / use each feature
-Users will be presented with the menu after they initiate the Ruby run file. They then need to follow the instructions
+Users will be presented with the menu after they initiate the Ruby run file. They then need to follow the options they are presented with. Please see below:
+
+
+
 
 ### How the user will interact with / use each feature
 Users have two main ways to interact with the features of this app. The first way is to select the menu option to search for a hike. 
 They are then presented with sub-features where they can search for hikes by scrolling a list of hikes that are sorted by names, distance, distance from Melbourne, place names and hikes that are wheelchair friendly or dog friendly. 
 
 ### How errors will be handled by the application and displayed to the user
-Currently, errors 
+Currently, errors will be handled in the following way:
+* Where 
