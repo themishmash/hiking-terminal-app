@@ -9,6 +9,10 @@ This plan will include the following:
 * Statement of purpose and scope
 * Features
 * User interaction and Experience
+* Control Flow Diagram
+* Status updates - Please refer to development-log.md
+* Help file
+* Test application
 
 
 ## Statement of Purpose and Scope
@@ -63,11 +67,6 @@ If users click on this, they will be presented with a series of questions that a
 In terms of error handling, I used a begin and rescue for the entering of wheelchair and dog friendly data. Users can only input Y or N for these questions (a boolean data type). I understand this is not usually how begin and rescue would be used (it is normally used for unexpected errors), however I am using it for the purposes of showing I can use this error handling approach. 
 
 ## User Interaction and Experience 
-Develop an outline of the user interaction and experience for the application.
-Your outline must include:
-- how the user will find out how to interact with / use each feature
-- how the user will interact with / use each feature
-- how errors will be handled by the application and displayed to the user
 
 ### How the user will find out how to interact with / use each feature
 Users will be presented with the menu after they initiate the Ruby run file. The app requires the following ruby gems to be installed: 
@@ -95,7 +94,7 @@ They are then presented with sub-features where they can search for hikes by:
 Users can also enter hikes after being asked the following questions:
 * What is the hike name?
 * What is the hiking distance?
-* What is the distsance from Melbourne?
+* What is the distance from Melbourne?
 * Where is the hike located?
 * Is it wheelchair friendly?
 * Is it dog friendly?
@@ -113,6 +112,119 @@ Please see screenshots below.
 ![alt text](automated-testing-pass.png)
 
 ![alt text](manual-testing.png)
+
+
+## Control Flow Diagram
+
+![alt text](control-flow-diagram.png)
+
+## Implementation Plan 
+
+I utilised the tool Trello as a project management tool to assist in completing my terminal app. Please see the screen shots below of the board at different stages. I have also incldued a checklist. 
+
+3-9-19 screenshot
+![alt text](/trello/3-9-19-Trello-screenshot.png)
+
+4-9-19 screenshot
+![alt text](/trello/4-9-19-Trello-screenshot.png)
+
+5-9-19 screenshot 2
+![alt text](/trello/5-9-19-Trello-checklist-after-testing.png)
+
+Trello checklist
+![alt text](/trello/trello-checklist.png)
+
+
+## Help File
+Design a help file which includes a set of instructions which accurately describe how to use and install the application. 
+
+You must include:
+- steps to install the application
+- any dependencies required by the application to operate
+- any system/hardware requirements
+- a written explanation of the different features of the application
+
+### Steps to install application / dependencies / hardware requirements
+
+For Mac Users:
+* Need to have Homebrew installed 
+* Need Ruby installed through Rbenv 2.5.1 
+* Type this command into your terminal: bash build.sh
+* Need to install the Ruby gems which are included in the build.sh file
+    * colorize
+    * tty-prompt
+    * tty-font
+    * tty-spinner
+
+### Different features of the application
+
+Users are presented with a main menu with three options: Search for a hike, Enter a hike and Exit. This is a loop function. 
+
+### Search for a hike
+
+Within this option, users can list hikes by name, distance, distance from Melbourne, place name and whether the hike is wheelchair or dog friendly. 
+
+For example, if users click on the hike name feature, all hike names will be displayed. Users can then choose a specific hike to find out full details about it (ie the name, distance, distance from Melbourne, place name and whether it is wheelchair or dog friendly).  
+
+### Enter a hike
+If users click on this, they will be presented with a series of questions that align with the headers of the CSV file. They enter their answers which are then stored in an array of hashes. This array of hashes are then pushed into the hiking CSV file. 
+
+Please refer to the list of features in [Statement of purpose and scope](#list-of-features) above for more detailed information. 
+
+
+## Test application
+
+As mentioned above, testing will be handled in two ways:
+
+* automated testing. The following code shows that there are two automated tests being carried out. 
+    * Test Number 1 calls an argument to determine whether the new hikes entered by the user are accurately entered into the CSV document. 
+    * Test Number 2 calls an argument to determine whether the correct file exists. 
+
+````
+require_relative "hike.rb"
+hiking_list = [] 
+
+# Test Number 1
+def check_add_hike
+    csv = load_data_from_csv('hiking.csv', [])
+    initial_length = csv.length
+    add_hike("Test", "10", "20", "South Yarra", "Y", "N")
+    csv = load_data_from_csv('hiking.csv', [])
+    
+    if csv.length - initial_length >= 1
+        return "Test passes!".colorize(:green)
+    else
+        return "Test failed!".colorize(:red)
+    end
+end
+
+# Test Number 2
+def check_file_exists(filename)
+    file_exist = File.exist?(filename)
+    if file_exist == true
+        return "Test passes!".colorize(:green)
+    else 
+        puts 'Error: Sorry this info is not available now. Please let the administrator know. Please select another option.'
+        return "Test failed!".colorize(:red)
+    end
+end
+
+puts check_file_exists('hiking.csv')
+puts check_add_hike
+````
+
+
+
+* manual testing. This is the link to the manual testing in detail [Link text](https://docs.google.com/spreadsheets/d/194DTAsyTxVmcwEmlERnpcEnefffcY9tf8t00JSTrAQk/edit#gid=883346421)
+
+
+For more information, please refer to how errors are handled in [User Interaction and Experience](#How-errors-will-be-handled-by-the-application-and-displayed-to-the-user)
+
+
+
+
+
+
 
 
 
