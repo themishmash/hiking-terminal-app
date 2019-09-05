@@ -1,8 +1,15 @@
+#bash build.sh
+
 chmod +x ./build.sh
 
-#install all gems
+mkdir dist
 
-system("gem install colorize")
-system("gem install tty-prompt")
-system("gem install tty-font")
-system("gem install tty-spinner")
+copy code from src directory into dist or build directory
+
+cp ./src/hike.rb ./dist
+
+#install all gems
+gem install colorize
+gem install tty-prompt
+gem install tty-font
+gem install tty-spinner
