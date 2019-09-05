@@ -6,6 +6,7 @@ This plan will include the following:
 * Features
 * User interaction and Experience
 * Control Flow Diagram
+* Implementation Plan
 * Status updates - Please refer to my [development-log.md](development-log.md)
 * Help file
 * Test application

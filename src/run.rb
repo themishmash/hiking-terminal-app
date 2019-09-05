@@ -105,7 +105,7 @@ loop do
                 distance = prompt.ask('What is the hiking distance? (km)').to_f
                 if distance == '' || distance == 0
                     puts 'Please enter again'
-                elsif distance > 0
+                else
                     break 
                 end 
             end 
@@ -114,7 +114,7 @@ loop do
                 distance_from_melbourne = prompt.ask('What is the distance from Melbourne? (km)').to_f
                 if distance_from_melbourne == '' || distance_from_melbourne == 0
                         puts 'Please enter again'
-                elsif distance_from_melbourne > 0
+                else
                     break
                 end 
             end 
