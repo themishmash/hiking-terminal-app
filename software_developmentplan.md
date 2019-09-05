@@ -58,4 +58,19 @@ If users click on this, they will be presented with a series of questions that a
 
 In terms of error handling, I used a begin and rescue for the entering of wheelchair and dog friendly data. Users can only input Y or N for these questions (a boolean data type). I understand this is not usually how begin and rescue would be used (it is normally used for unexpected errors), however I am using it for the purposes of showing I can use this error handling approach. 
 
+## User Interaction and Experience 
+Develop an outline of the user interaction and experience for the application.
+Your outline must include:
+- how the user will find out how to interact with / use each feature
+- how the user will interact with / use each feature
+- how errors will be handled by the application and displayed to the user
 
+### How the user will find out how to interact with / use each feature
+Users will be presented with the menu after they initiate the Ruby run file. They then need to follow the instructions
+
+### How the user will interact with / use each feature
+Users have two main ways to interact with the features of this app. The first way is to select the menu option to search for a hike. 
+They are then presented with sub-features where they can search for hikes by scrolling a list of hikes that are sorted by names, distance, distance from Melbourne, place names and hikes that are wheelchair friendly or dog friendly. 
+
+### How errors will be handled by the application and displayed to the user
+Currently, errors 
