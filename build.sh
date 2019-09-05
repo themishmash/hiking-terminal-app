@@ -1,12 +1,14 @@
 #bash build.sh
 
-chmod +x ./build.sh
+# chmod +x ./build.sh
 
 mkdir dist
 
 copy code from src directory into dist or build directory
 
 cp ./src/hike.rb ./dist
+
+cp ./src/hike.csv ./dist
 
 #install all gems
 gem install colorize
