@@ -131,6 +131,8 @@ I utilised the tool Trello as a project management tool to assist in completing 
 Trello checklist
 ![alt text](/trello/trello-checklist.png)
 
+For most up to date version of my Trello booard, please see here [Hiking Terminal app Trello Board](https://trello.com/b/ATZqio7J/hiking-terminal-app)
+
 
 ## Help File
 Design a help file which includes a set of instructions which accurately describe how to use and install the application. 
@@ -174,7 +176,7 @@ Please refer to the list of features in [Statement of purpose and scope; List of
 
 As mentioned above, testing will be handled in two ways:
 
-* automated testing. The following code shows that there are two automated tests being carried out. 
+* Automated testing. The following code shows that there are two automated tests being carried out. 
     * Test Number 1 calls an argument to determine whether the new hikes entered by the user are accurately entered into the CSV document. 
     * Test Number 2 calls an argument to determine whether the correct file exists. 
 
