@@ -1,8 +1,8 @@
 # Software Development Plan - We Can Walk It Out
 By Michelle Wong 
 
-## GitHub link fix 
-[Google sheet](https://docs.google.com/spreadsheets/d/194DTAsyTxVmcwEmlERnpcEnefffcY9tf8t00JSTrAQk/edit#gid=883346421)
+## GitHub link
+[Michelle's github link](https://github.com/themishmash/hiking-terminal-app)
 
 This plan will include the following:
 * Statement of purpose and scope
@@ -18,7 +18,7 @@ This plan will include the following:
 ## Statement of Purpose and Scope
 ### What the app will do - search by hikes
 
-‘We can walk it out’ use a loop and case statements to provide people with information about hikes and to enter a hike. When users are first confronted with the app, there are three choices, ‘1. search by hike, 2. enter a hike and 3. exit.’ At the moment, users can only pick 1, 2 or 3. An else statement was used to achieve this. 
+‘We can walk it out’ uses loop and case statements to provide people with information about hikes and to enter a hike. When users are first confronted with the app, there are three choices, ‘1. search by hike, 2. enter a hike and 3. exit.’ At the moment, users can only pick 1, 2 or 3. An else statement was used to achieve this. 
 
 Data about the hikes are stored in a CSV file and a method was created to convert the CSV file into a hash in order to have a more aesthetically appealing display for the user. When users are searching hikes by name, distance from Melbourne etc, specific methods are being called upon in order to display the information as a hash. For example, when a user requests to list hikes by ‘Hike distance’, two methods are being called upon. The first one, ‘show_hike_dist(hiking_data)’ looks at hiking distance data from the CSV file and also uses a block to sort the data from shortest to longest. Then the user can choose which hike to look at specifically, calling on the method ‘hike_shown(hiking_data)’. 
 
