@@ -4,6 +4,10 @@ By Michelle Wong
 ## GitHub link
 [Michelle's github link](https://github.com/themishmash/hiking-terminal-app)
 
+
+## Presentation slides
+[Michelle's pitch slides](https://docs.google.com/presentation/d/1LqawS4_onpdZeQiJMNyZ7WvtcBdottUUH0Jlgui5twc/edit#slide=id.p)
+
 This plan will include the following:
 * Statement of purpose and scope
 * Features
