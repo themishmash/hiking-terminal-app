@@ -18,7 +18,7 @@ This plan will include the following:
 ## Statement of Purpose and Scope
 ### What the app will do - search by hikes
 
-‘We can walk it out’ uses loop and case statements to provide people with information about hikes and to enter a hike. When users are first confronted with the app, there are three choices, ‘1. search by hike, 2. enter a hike and 3. exit.’ At the moment, users can only pick 1, 2 or 3. An else statement was used to achieve this. 
+‘We can walk it out’ uses loop and case statements to provide people with information about hikes and to enter a hike. When users are first confronted with the app, there are three choices, ‘1. search by hike, 2. enter a hike and 3. exit.’ Users can only pick 1, 2 or 3. An else statement was used to achieve this. 
 
 Data about the hikes are stored in a CSV file and a method was created to convert the CSV file into a hash in order to have a more aesthetically appealing display for the user. When users are searching hikes by name, distance from Melbourne etc, specific methods are being called upon in order to display the information as a hash. For example, when a user requests to list hikes by ‘Hike distance’, two methods are being called upon. The first one, ‘show_hike_dist(hiking_data)’ looks at hiking distance data from the CSV file and also uses a block to sort the data from shortest to longest. Then the user can choose which hike to look at specifically, calling on the method ‘hike_shown(hiking_data)’. 
 
@@ -103,9 +103,9 @@ Users also have the option to Exit from the app after searching or entering a hi
 
 ### How errors will be handled by the application and displayed to the user
 Currently, errors will be handled in the following way:
-* automated testing. Please refer to the file titled 'automated_test_for_hike.rb'
+* Automated testing. Please refer to the file titled 'automated_test_for_hike.rb'
 
-* manual testing. This is the link to the manual testing in detail [Link text](https://docs.google.com/spreadsheets/d/194DTAsyTxVmcwEmlERnpcEnefffcY9tf8t00JSTrAQk/edit#gid=883346421)
+* Manual testing. This is the link to the manual testing in detail [Google sheet](https://docs.google.com/spreadsheets/d/194DTAsyTxVmcwEmlERnpcEnefffcY9tf8t00JSTrAQk/edit#gid=883346421)
 
 Please see screenshots below. 
 
@@ -117,6 +117,10 @@ Please see screenshots below.
 ## Control Flow Diagram
 
 ![alt text](control-flow-diagram.png)
+
+This is an overview of the whole app and then I have provided one example of error handling. 
+
+This is the link to it as well. [Google drawing](https://docs.google.com/drawings/d/1xEXncdFXGSM4nKsnyBaKTQiBR3XKe9q7PFlLHQI_9ok/edit)
 
 ## Implementation Plan 
 

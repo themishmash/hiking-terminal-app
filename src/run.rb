@@ -98,7 +98,8 @@ loop do
 
         when 2 #enter hike. 
             prompt = TTY::Prompt.new
-
+            distance = 0
+            distance_from_melbourne = 0
             hikes = prompt.ask('What is the name of the hike?') 
 
             loop do

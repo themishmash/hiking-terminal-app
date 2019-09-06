@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 
 #########Main coding doc###############
 
@@ -5,6 +7,7 @@ require 'tty-prompt'
 require 'colorize'
 require 'tty-font'
 require 'tty-spinner'
+require 'rubocop'
 
 require 'CSV'
 require 'pry'
