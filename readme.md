@@ -17,13 +17,13 @@ This plan will include the following:
 
 
 ## Statement of Purpose and Scope
-### What the app will do - search by hikes
+### What the app will do - Feature: search by hikes
 
 ‘We can walk it out’ uses loop and case statements to provide people with information about hikes and to enter a hike. When users are first confronted with the app, there are three choices, ‘1. search by hike, 2. enter a hike and 3. exit.’ Users can only pick 1, 2 or 3. An else statement was used to achieve this. 
 
 Data about the hikes are stored in a CSV file and a method was created to convert the CSV file into a hash in order to have a more aesthetically appealing display for the user. When users are searching hikes by name, distance from Melbourne etc, specific methods are being called upon in order to display the information as a hash. For example, when a user requests to list hikes by ‘Hike distance’, two methods are being called upon. The first one, ‘show_hike_dist(hiking_data)’ looks at hiking distance data from the CSV file and also uses a block to sort the data from shortest to longest. Then the user can choose which hike to look at specifically, calling on the method ‘hike_shown(hiking_data)’. 
 
-### What the app will do - enter new hikes
+### What the app will do - Feature: enter new hikes
 
 Users also have the ability to enter new hikes. This is achieved by asking them a series of questions, with their answers stored into an array of hashes. This hash is then converted into a CSV and pushed into a CSV file containing all the hikes. The wheelchair and dog friendly questions are created as boolean data type questions and as a result, the user can only input ‘Y’ or ‘N’ to those questions. 
 
@@ -143,14 +143,6 @@ For most up to date version of my Trello booard, please see here [Hiking Termina
 
 
 ## Help File
-Design a help file which includes a set of instructions which accurately describe how to use and install the application. 
-
-You must include:
-- steps to install the application
-- any dependencies required by the application to operate
-- any system/hardware requirements
-- a written explanation of the different features of the application
-
 
 ### Steps to install application / dependencies / hardware requirements
 To run the app, follow the steps below. 
@@ -244,7 +236,9 @@ For more information, please refer to how errors are handled in [User Interactio
 
 
 ## Future Improvements
-There are a few areas where this app could be improved. 
+
+There are a few areas where this app could be improved.
+
 * Ability to verify user input of hikes. Perhaps a user name and login. 
 * Ability to verify names of the hikes and places. Currently the user can enter in anything that is a string and it will be saved into the hike database. 
 * I had hoped to use the geocoder gem to calculate the distance between the hike and Melbourne by getting the user to input the place. However, I realised that working out distance between objects can only be achieved through Rails. As a result, unfortunately this could not be implemented. 
