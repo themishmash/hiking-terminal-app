@@ -13,6 +13,7 @@ This plan will include the following:
 * Status updates - Please refer to my [development-log.md](development-log.md)
 * Help file
 * Test application
+* Future Improvements
 
 
 ## Statement of Purpose and Scope
@@ -243,7 +244,11 @@ For more information, please refer to how errors are handled in [User Interactio
 
 
 ## Future Improvements
-There are a few things that could be improved. 
+There are a few areas where this app could be improved. 
+* Ability to verify user input of hikes. Perhaps a user name and login. 
+* Ability to verify names of the hikes and places. Currently the user can enter in anything that is a string and it will be saved into the hike database. 
+* I had hoped to use the geocoder gem to calculate the distance between the hike and Melbourne by getting the user to input the place. However, I realised that working out distance between objects can only be achieved through Rails. As a result, unfortunately this could not be implemented. 
+* After speaking to some people with special needs (who I volunteer with), they mentioned that it would be great to have information about whether the hikes are accessible via public transport. Subsequently, I would like to find out if there is an API or gem that I can use to help gather information about this instead of just getting the user to input this information. 
 
 
 
