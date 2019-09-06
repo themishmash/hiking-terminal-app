@@ -1,5 +1,8 @@
 # Software Development Plan - We Can Walk It Out
-By Michelle Wong
+By Michelle Wong 
+
+## GitHub link fix 
+[Google sheet](https://docs.google.com/spreadsheets/d/194DTAsyTxVmcwEmlERnpcEnefffcY9tf8t00JSTrAQk/edit#gid=883346421)
 
 This plan will include the following:
 * Statement of purpose and scope
@@ -145,16 +148,32 @@ You must include:
 
 
 ### Steps to install application / dependencies / hardware requirements
+To run the app, follow the steps below. 
 
 For Mac Users:
-* Need to have Homebrew installed 
-* Need Ruby installed through Rbenv 2.5.1 
-* Type this command into your terminal: bash build.sh
-* Need to install the Ruby gems which are included in the build.sh file
-    * colorize
-    * tty-prompt
-    * tty-font
-    * tty-spinner
+1. Have Homebrew installed 
+
+2. Make sure Ruby is installed on the machine. I used rbenv and this required homebrew. I also used Ruby 2.5.1 
+
+3. Clone the repo
+````txt
+git clone git@github.com:themishmash/hiking-terminal-app.git
+````
+
+4. 'cd' into the directory you've cloned
+
+5. Run the build shell script
+```txt
+bash build.sh
+````
+
+6. Run the following command.
+````txt 
+ruby run.rb
+````
+
+7. If you want to start the app in advanced mode - ruby app.rb -a
+
 
 ### Different features of the application
 
