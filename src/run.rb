@@ -154,6 +154,7 @@ loop do
                 end 
                 ### rescue
                 add_hike(hikes, distance, distance_from_melbourne, place, wheelchair, dog)
+                hiking_data = load_data_from_csv('hiking.csv', hiking_data)
 
         when 3
             puts "Take a hike!"
